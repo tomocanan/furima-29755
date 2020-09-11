@@ -13,12 +13,12 @@
 | family_name    | string | null: false |
 | first_name_kt  | string | null: false |
 | family_name_kt | string | null: false |
-| birth_day      | date   | null: false |
+| birthday       | date   | null: false |
 
 ### Association
 
 - has_many :items
-- has_many :transactions
+- has_many :item_transactions
 
 ## items テーブル
 
@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :transaction
+- has_one :item_transaction
 
 ## buyers テーブル
 
@@ -50,9 +50,9 @@
 
 ### Association
 
-- belongs_to :transaction
+- belongs_to :item_transaction
 
-## transactions テーブル
+## item_transactions テーブル
 
 | Column       | Type     | Options                        |
 | ------------ | -------- | ------------------------------ |
