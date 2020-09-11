@@ -1,5 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
+  before_action :move_to_index, except: [:index, :post]
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+
+
 
   private
 
