@@ -30,7 +30,7 @@
 | delivery_fee | integer  | null: false                    |
 | area         | integer  | null: false                    |
 | day          | integer  | null: false                    |
-| user_id      |references| null: false, foreign_key: true |
+| user         |references| null: false, foreign_key: true |
 
 ### Association
 
@@ -41,11 +41,12 @@
 
 | Column       | Type     | Options                        |
 | ------------ | -------- | ------------------------------ |
-| prefecture   | string   | null: false                    |
+| postal       | string   | null: false                    |
+| prefecture   | integer  | null: false                    |
 | city         | string   | null: false                    |
 | address1     | string   | null: false                    |
 | address2     | string   |                                |
-| tell         | integer  | null: false                    |
+| tell         | string   | null: false                    |
 
 ### Association
 
@@ -55,8 +56,8 @@
 
 | Column       | Type     | Options                        |
 | ------------ | -------- | ------------------------------ |
-| user_id      |references| null: false, foreign_key: true |
-| item_id      |references| null: false, foreign_key: true |
+| user         |references| null: false, foreign_key: true |
+| item         |references| null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
