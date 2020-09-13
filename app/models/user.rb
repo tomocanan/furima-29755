@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :email, presence: true
-  validates :password, presence: true
-
+  validates :encrypted_password, presence: true, length: { minimum: 6 }
+  has_many :items
 end
