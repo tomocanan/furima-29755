@@ -14,21 +14,14 @@
       <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
+    <ul class='lists-right'>
       <% if user_signed_in? %>
-          <ul class='lists-right'>
-            <li>
-              <%= link_to current_user.nickname, edit_user_registration_path, class: "user-nickname" %>
-              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %>
-            </li>
-          </ul>
-        <% else %>
-          <ul class='lists-right'>
-            <li>
-              <%= link_to "ログイン", new_user_session_path, class: "post" %>
-              <%= link_to "新規登録", new_user_registration_path, class: "post" %>
-            </li>
-          </ul>
-        <% end %>
+      <li><%= link_to current_user.nickname, edit_user_registration_path, class: "user-nickname" %> </li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %> </li>
+      <% else %>
+      <li><%= link_to "ログイン", new_user_session_path, class: "post" %></li>
+      <li><%= link_to "新規登録", new_user_registration_path, class: "post" %></li>
+      <% end %>
     </ul>
   </div>
 </header>
