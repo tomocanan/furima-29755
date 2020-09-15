@@ -6,9 +6,6 @@ class Item < ApplicationRecord
   
   belongs_to_active_hash :day
   belongs_to_active_hash :delivery_fee
-
-
-  
   
   validates :category_id, numericality: { other_than: 1 }
   validates :status_id, numericality: { other_than: 1 }
@@ -26,6 +23,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :item_transaction
+  has_one_attached :image
   
   has_many :statuses
 end
