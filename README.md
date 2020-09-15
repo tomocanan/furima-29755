@@ -25,10 +25,11 @@
 | Column       | Type     | Options                        |
 | ------------ | -------- | ------------------------------ |
 | name         | string   | null: false                    |
+| info         | text     | null: false                    |
 | price        | integer  | null: false                    |
 | status       | integer  | null: false                    |
 | delivery_fee | integer  | null: false                    |
-| area         | integer  | null: false                    |
+| prefecture   | integer  | null: false                    |
 | day          | integer  | null: false                    |
 | user         |references| null: false, foreign_key: true |
 
