@@ -15,6 +15,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :day_id,            null: false
       t.text    :info,              null: false
       t.references :user, foreign_key: true
+      t.boolean :set
       t.timestamps
     end
   end

@@ -18,6 +18,18 @@ class ItemsController < ApplicationController
     render 'new'
   end
 
+  def set
+    item = Item.find(params[:id])
+    if item.set
+      item.update(set: false)
+    else
+      item.update(set: true)
+    end
+
+    add_tax_price = Post.find(params[:id])
+    render json: { item: add_tax_price }
+  end
+  
   private
   def item_params
     params.require(:item).permit(:image, :info, :name, :price, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_id).merge(user_id: current_user.id)
