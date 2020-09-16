@@ -18,17 +18,18 @@ class ItemsController < ApplicationController
     render 'new'
   end
 
-  def set
-    item = Item.find(params[:id])
-    if item.set
-      item.update(set: false)
-    else
-      item.update(set: true)
-    end
+  # def set
+  #   # binding.pry
+  #   item = Item.find(params[:id])
+  #   if item.set
+  #     item.update(set: false)
+  #   else
+  #     item.update(set: true)
+  #   end
 
-    add_tax_price = Post.find(params[:id])
-    render json: { item: add_tax_price }
-  end
+  #   add_tax_price = Item.find(params[:id])
+  #   render json: { item: add_tax_price }
+  # end
   
   private
   def item_params
