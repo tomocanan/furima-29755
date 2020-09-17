@@ -9,13 +9,6 @@ RSpec.describe Item, type: :model do
       it '出品画像、商品名、商品の説明、商品の詳細（カテゴリー、商品の状態）、配送について（配送料の負担、発送元の地域、発送までの日数）、販売価格があれば出品できる' do
         expect(@item).to be_valid
       end
-      it '販売価格が300円以上なら出品できること' do
-        @item.price = '300'
-        expect(@item).to be_valid
-      end
-      it '商品名が40文字以内なら出品できること' do
-        @item.info = 'あああああああああ、あああああああああ、あああああああああ、あああああああああ。'
-      end
     end
 
     context '商品出品できないとき' do
@@ -81,7 +74,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
-      it 'ユーザーが紐付いていないとツイートは保存できない' do
+      it '商品がユーザーと紐付いていること' do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
