@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'aaa000'
         expect(@user).to be_valid
       end
-      
+
     end
     context 'ユーザー登録できない時' do
       it 'ニックネームが必須であること' do
