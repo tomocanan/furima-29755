@@ -6,15 +6,14 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
     context 'ユーザー登録できる時' do
-      it "nickname、email、password、password_confirmationと本人確認（本名の名字と名前、本名の名字カナと名前カナ、生年月日）が存在すれば登録できる" do
+      it 'nickname、email、password、password_confirmationと本人確認（本名の名字と名前、本名の名字カナと名前カナ、生年月日）が存在すれば登録できる' do
         expect(@user).to be_valid
       end
-      it "passwordが半角英数混合かつ6文字以上であれば登録できる" do
+      it 'passwordが半角英数混合かつ6文字以上であれば登録できる' do
         @user.password = 'aaa000'
         @user.password_confirmation = 'aaa000'
         expect(@user).to be_valid
       end
-      
     end
     context 'ユーザー登録できない時' do
       it 'ニックネームが必須であること' do
