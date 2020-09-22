@@ -7,11 +7,11 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_fee
 
   with_options numericality: { other_than: 1 } do
-  validates :category_id
-  validates :status_id
-  validates :prefecture_id
-  validates :delivery_fee_id
-  validates :day_id
+    validates :category_id
+    validates :status_id
+    validates :prefecture_id
+    validates :delivery_fee_id
+    validates :day_id
   end
 
   validates :image, presence: true
