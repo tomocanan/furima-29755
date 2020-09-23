@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
   def update
     @item.update(item_params)
-    return redirect_to item_path if @item.valid? && @item.save
+    return redirect_to item_path if @item.valid?
     render 'edit'
   end
 
