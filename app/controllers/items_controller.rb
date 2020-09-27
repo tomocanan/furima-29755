@@ -42,6 +42,7 @@ class ItemsController < ApplicationController
 
   def order_params
     params.permit(:price, :token, :area, :city, :address1, :address2, :tell, :postal, :item_id)
+    # params.permit(:price, :token, :area, :city, :address1, :address2, :tell, :postal, :item_id).merge(user_id: current_user.id)
   end
 
   def item_params
