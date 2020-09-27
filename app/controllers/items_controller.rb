@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
+    @order = OrderBuyer.new(order_params)
   end
 
   def new
@@ -18,10 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # @order = Order.new
-    # @order = @item.orders
-    # @order = @item.orders.includes(:user)
-
+    @order = OrderBuyer.new(order_params)
   end
 
   def edit
@@ -41,6 +39,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def order_params
+    params.permit(:price, :token, :area, :city, :address1, :address2, :tell, :postal, :item_id).merge(user_id: current_user.id)
+  end
 
   def item_params
     params.require(:item).permit(:image, :info, :name, :price, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_id).merge(user_id: current_user.id)
