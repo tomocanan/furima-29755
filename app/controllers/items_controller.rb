@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index]
   before_action :pick_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
+    @order = OrderBuyer.new(order_params)
   end
 
   def new
@@ -18,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = OrderBuyer.new(order_params)
   end
 
   def edit
@@ -31,12 +33,16 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    return  redirect_to root_path if @item.destroy
-    
+    return redirect_to root_path if @item.destroy
+
     render 'edit'
   end
 
   private
+
+  def order_params
+    params.permit(:price, :token, :area, :city, :address1, :address2, :tell, :postal, :item_id)
+  end
 
   def item_params
     params.require(:item).permit(:image, :info, :name, :price, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_id).merge(user_id: current_user.id)
