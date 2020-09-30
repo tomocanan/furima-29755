@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  
+  before_action :pick_item, only: [:index, :create]
+
   def index
     @order = OrderBuyer.new
     @item = Item.find(params[:item_id])
@@ -30,4 +33,9 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def pick_item
+    @item = Item.find(params[:item_id])
+  end
+
 end

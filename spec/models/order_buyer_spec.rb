@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Buyer, type: :model do
+RSpec.describe OrderBuyer, type: :model do
   describe '商品購入機能' do
     before do
       user = FactoryBot.create(:user)
@@ -23,35 +23,32 @@ RSpec.describe Buyer, type: :model do
       it '配送先情報の郵便番号にハイフンが入っていないと購入できない' do
         @order_buyer.postal = '0000000'
         @order_buyer.valid?
-        sleep 3
         expect(@order_buyer.errors.full_messages).to include('Postal is invalid. Include hyphen(-)')
       end
       it '配送先情報の都道府県が空だと購入できない' do
         @order_buyer.area = nil
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages)
+        expect(@order_buyer.errors.full_messages).to include("Area can't be blank")
       end
       it '配送先情報の市区町村が空だと購入できない' do
         @order_buyer.city = ''
         @order_buyer.valid?
-        sleep 3
-        expect(@order_buyer.errors.full_messages)
+        expect(@order_buyer.errors.full_messages).to include("City can't be blank")
       end
       it '配送先情報の番地が空だと購入できない' do
         @order_buyer.address1 = ''
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages)
+        expect(@order_buyer.errors.full_messages).to include("Address1 can't be blank")
       end
       it '配送先情報の電話番号が空だと購入できない' do
         @order_buyer.tell = ''
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages)
+        expect(@order_buyer.errors.full_messages).to include("Tell can't be blank")
       end
       it '電話番号にハイフンが入っていると購入できない' do
         @order_buyer.tell = '000-0000-00'
         @order_buyer.valid?
-        sleep 3
-        expect(@order_buyer.errors.full_messages)
+        expect(@order_buyer.errors.full_messages).to include("Tell is invalid")
       end
     end
   end

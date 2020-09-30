@@ -2,8 +2,13 @@ class OrderBuyer
   include ActiveModel::Model
   attr_accessor :postal, :area, :city, :address1, :address2, :tell, :price, :item_id, :user_id, :token
 
-  validates :postal, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
-  validates :area, numericality: { other_than: 1, message: "can't be blank" }
+  with_options presence: true do
+    validates :area, numericality: { other_than: 1}
+    validates :city
+    validates :address1
+    validates :tell, format: { with: /\d{10,11}/ }
+    validates :postal, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  end
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
