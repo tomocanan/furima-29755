@@ -1,6 +1,5 @@
 <%= render "shared/second-header"%>
-<%# <%= form_with model: @item, local: true do |f| %>
-<%# <%= render "shared/error_messages", model: f.object %> %>
+<%= render "error_messages", order: @order %>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -128,6 +127,5 @@
     </div>
     <% end %>
   </div>
-<%# <% end %> %>
 </div>
 <%= render "shared/second-footer"%>
