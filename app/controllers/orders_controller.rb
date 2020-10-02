@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :move_to_index, only: [:index, :create]
+  before_action :authenticate_user!
   before_action :pick_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @order = OrderBuyer.new
@@ -37,7 +38,9 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path unless user_signed_in?
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
 end
