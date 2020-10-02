@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
-    @order = OrderBuyer.new(order_params)
   end
 
   def new
@@ -13,13 +12,14 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    return redirect_to root_path if @item.valid? && @item.save
-
+    if @item.valid?
+      @item.save
+      return redirect_to root_path
+    end
     render 'new'
   end
 
   def show
-    @order = OrderBuyer.new(order_params)
   end
 
   def edit
@@ -40,12 +40,8 @@ class ItemsController < ApplicationController
 
   private
 
-  def order_params
-    params.permit(:price, :token, :area, :city, :address1, :address2, :tell, :postal, :item_id)
-  end
-
   def item_params
-    params.permit(:image, :info, :name, :price, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :info, :name, :price, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_id).merge(user_id: current_user.id)
   end
 
   def move_to_index
