@@ -3,10 +3,7 @@ class OrdersController < ApplicationController
   before_action :pick_item, only: [:index, :create]
 
   def index
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
-    if @item.order.present?
+    if current_user.id == @item.user_id || @item.order.present?
       redirect_to root_path
     end
     @order = OrderBuyer.new
